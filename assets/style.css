@@ -9,9 +9,19 @@
   align-items: center;
 }
 
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border-radius: 20%;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
 h1, h2, h3, h4 {
   font-family: 'Kaushan Script', cursive;
   margin-bottom: 0px;
+  display: inline-block;
 }
 
 th {
