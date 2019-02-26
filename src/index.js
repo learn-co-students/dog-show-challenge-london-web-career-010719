@@ -44,6 +44,7 @@ function fillForm(dog) {
     formEl.addEventListener('submit', event => {
         event.preventDefault()
         updateDogLocal(dog)
+        formEl.reset()
         updateDogServer(dog)
             .then(displayDogs)
     })
@@ -64,5 +65,7 @@ function updateDogServer(dog) {
     return fetch(url, options)
         .then(res => res.json())
 }
+
+
 
 
