@@ -1,7 +1,9 @@
-//==== Set Global Variables ====//
+//==== Set Global & State Variables====//
 const dogTableEl = document.querySelector('#table-body')
 const dogFormEl = document.querySelector('#dog-form')
-const state = {dogs: [], selectedDog: undefined, create: true}
+let state_dogs = []
+let state_selectedDog = undefined
+let state_create = true
 
 //==== Set inital state ====//
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 function initialize(){
     getDogs().then(dogs => {
-        state.dogs = dogs
+        state_dogs = dogs
         drawDogRows(dogs)
         addFormSubmitListener()
         addFormClearListener()
@@ -20,8 +22,8 @@ function initialize(){
 function addFormSubmitListener(){
     dogFormEl.addEventListener('submit', (e)=>{
         e.preventDefault()
-        //create or edit a dog dependent on state
-        state.create ? addDog() : editDog()
+        state_create ? addDog() : editDog()
+        resetFormState()
     })
 }
 function addFormClearListener(){
@@ -34,40 +36,33 @@ function addFormClearListener(){
 // promises used to ensure server and state are in sync and async functions 
 // work as expected
 
-//removes dog from the server and then edits state to match
+//removes dog from the server, edits state to match then removes dog row
 function removeDog(dog) {
     deleteDog(dog)
         .then(() => {
-            state.dogs = state.dogs.filter(dogItem => dogItem.id !== dog.id)
-            dogTableEl.innerHTML = ''
-            drawDogRows(state.dogs) //redraw table with dogs in state
+            state_dogs = state_dogs.filter(dogItem => dogItem.id !== dog.id)
+            removeDogRow(dog)
         })
 }
-//adds dog to server and then edits state to match
+//adds dog to server, edits state to match then draws new row
 function addDog() {
-    const newDog = {
-        name: dogFormEl.name.value,
-        breed: dogFormEl.breed.value,
-        sex: dogFormEl.sex.value
+    const newDog = {name: dogFormEl.name.value, breed: dogFormEl.breed.value, sex: dogFormEl.sex.value}
+    if (newDog.name === '' || newDog.breed === '' || newDog.sex === ''){
+        alert('name, breed & sex must all be present to create dog')
+        throw('name, breed & sex must all be present to create dog')
     }
     createDog(newDog)
         .then(dog => {
-            state.dogs.push(dog)
-            resetPageState()
+            state_dogs.push(dog)
+            drawDogRow(dog)
         })
 }
-//edit a dog on the server and store - if server operation fails throw error
+//edit a dog on the server
 function editDog() {
-    if (state.selectedDog === undefined) { throw ('a dog must be selected') }
-    updateLocalDog(state.selectedDog)
-    updateDog(state.selectedDog)
-        .then(success => {
-            if (success) {
-                resetPageState()
-            } else {
-                throw ('update failed')
-            }
-        })
+    if (state_selectedDog === undefined) { throw ('a dog must be selected') }
+    updateLocalDog(state_selectedDog)
+    updateDog(state_selectedDog)
+        .then(dog => updateDogRow(dog))
 }
 //update a dog in state (local)
 function updateLocalDog(dog) {
@@ -79,49 +74,41 @@ function updateLocalDog(dog) {
 //==== Helper Functions ====//
 //rests main form inputs and clears operation user was performing
 function resetFormState(){
-    document.querySelector('#dog-form-title').innerText = `Create a New Dog`
-    state.selectedDog = undefined
-    state.create = true
+    document.querySelector('#dog-form-title').innerText = 'Create a New Dog'
+    state_selectedDog = undefined
+    state_create = true
     dogFormEl.reset()
-}
-//resets form and redraws the dog table
-function resetPageState() {
-    resetFormState()
-    dogTableEl.innerHTML = ''
-    drawDogRows(state.dogs) //redraw table with dogs in state
 }
 //fill the edit form with dogs details to allow editing
 function populateEditDog(dog){
-    state.create = false //set state to not create
+    state_create = false //set state to not create
     document.querySelector('#dog-form-title').innerText = `Edit ${dog.name}`
     dogFormEl.name.value = dog.name
     dogFormEl.breed.value = dog.breed
     dogFormEl.sex.value = dog.sex
-    state.selectedDog = dog
+    state_selectedDog = dog
 }
+//functions to handle row manipulation
+const dogRowHTML = dog => `<td>${dog.name}</td><td>${dog.breed}</td><td>${dog.sex}</td><td><button>📝</button></td><td><button>🗑</button></td>`
+const updateDogRow = dog => dogTableEl.querySelector(`tr[data-dog-id="${dog.id}"]`).innerHTML = dogRowHTML(dog)
+const removeDogRow = dog => dogTableEl.querySelector(`tr[data-dog-id="${dog.id}"]`).remove()
 
 //===== DRAWING FUNCTIONS ====//
 //draws a single row inthe table for a dog object including event handling
 function drawDogRow(dog) {
     const dogRowEl = document.createElement('tr')
-    dogRowEl.innerHTML = `
-    <td>${dog.name}</td>
-    <td>${dog.breed}</td>
-    <td>${dog.sex}</td>
-    <td><button>📝</button></td>
-    <td><button>🗑</button></td>`
-    const dogEditBtnEl = dogRowEl.querySelectorAll('button')[0]
-    dogEditBtnEl.addEventListener('click', () => {
+    dogRowEl.dataset.dogId = dog.id
+    dogRowEl.innerHTML = dogRowHTML(dog)
+    dogRowEl.querySelectorAll('button')[0].addEventListener('click', () => {
         populateEditDog(dog)
     })
-    const dogDelBtnEl = dogRowEl.querySelectorAll('button')[1]
-    dogDelBtnEl.addEventListener('click', () => {
+    dogRowEl.querySelectorAll('button')[1].addEventListener('click', () => {
         removeDog(dog)
     })
     dogTableEl.appendChild(dogRowEl)
 }
 //draws a row per dog
-function drawDogRows(dogs) {
+const drawDogRows = dogs => {
     for (const dog of dogs) {
         drawDogRow(dog)
     }

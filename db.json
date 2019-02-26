@@ -1,10 +1,16 @@
 {
   "dogs": [
     {
+      "id": 1,
+      "name": "Baby",
+      "breed": "Scottish Deerhound",
+      "sex": "male"
+    },
+    {
       "id": 2,
       "name": "Teddy",
       "breed": "Rhodesian Ridgeback",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 3,
@@ -107,6 +113,12 @@
       "name": "Penny",
       "breed": "Wheaten Terrier",
       "sex": "male"
+    },
+    {
+      "id": 20,
+      "name": "Coco",
+      "breed": "Affenpinscher",
+      "sex": "female"
     }
   ]
 }
