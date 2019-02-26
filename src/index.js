@@ -14,12 +14,12 @@ function fetchDogs() {
 function writeDog(dog) {
     const dogEl = document.createElement('tr')
     dogEl.innerHTML = `
-    <td>${dog.name}</td>
-    <td>${dog.breed}</td>
-    <td>${dog.sex}</td>
-    <td>
-       <button>Edit Dog</button>
-    </td>`
+        <td>${dog.name}</td>
+        <td>${dog.breed}</td>
+        <td>${dog.sex}</td>
+        <td>
+            <button>Edit Dog</button>
+        </td>`
     const btnEl = dogEl.querySelector('button')
     btnEl.addEventListener('click', () => {
         fillForm(dog)
