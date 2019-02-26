@@ -2,7 +2,7 @@
   "dogs": [
     {
       "id": 1,
-      "name": "HAAADFSFS",
+      "name": "REAL DOG NAME",
       "breed": "Scottish Deerhound",
       "sex": "male"
     },
@@ -19,12 +19,6 @@
       "sex": "female"
     },
     {
-      "id": 4,
-      "name": "Harvey",
-      "breed": "Irish Spaniel",
-      "sex": "male"
-    },
-    {
       "id": 5,
       "name": "Gracie",
       "breed": "Miniature Pinscher",
@@ -32,7 +26,7 @@
     },
     {
       "id": 6,
-      "name": "Oreo",
+      "name": "Change Oreo",
       "breed": "English Springer",
       "sex": "male"
     },
@@ -44,14 +38,8 @@
     },
     {
       "id": 8,
-      "name": "Chloe",
+      "name": "Chloe2",
       "breed": "Dandie Terrier",
-      "sex": "male"
-    },
-    {
-      "id": 9,
-      "name": "Shelby",
-      "breed": "Kuvasz",
       "sex": "male"
     },
     {
@@ -64,12 +52,6 @@
       "id": 11,
       "name": "Jasper",
       "breed": "Redbone",
-      "sex": "female"
-    },
-    {
-      "id": 12,
-      "name": "Misty",
-      "breed": "Patterdale Terrier",
       "sex": "female"
     },
     {
@@ -119,6 +101,12 @@
       "name": "Coco",
       "breed": "Affenpinscher",
       "sex": "female"
+    },
+    {
+      "name": "Rosie",
+      "breed": "Labradoodle",
+      "sex": "female",
+      "id": 21
     }
   ]
 }

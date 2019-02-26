@@ -10,6 +10,16 @@ function getDogs() {
         })
     }
 
+function newDog(dog) {
+    const options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(dog)
+    }
+    fetch(url, options)
+    // .then(resp => resp.json())
+    .then(getDogs)
+}
 
 function patchDog(dog) {
     const options = {
@@ -18,6 +28,15 @@ function patchDog(dog) {
         body: JSON.stringify(dog)
     }
     fetch(`http://localhost:3000/dogs/${dog.id}`, options)
+   // .then(resp => resp.json())
+   .then(getDogs)
+}
+
+function deleteDog(dogId) {
+    const options = {
+        method: 'DELETE',
+    }
+    fetch(`http://localhost:3000/dogs/${dogId}`, options)
    // .then(resp => resp.json())
    .then(getDogs)
 }
