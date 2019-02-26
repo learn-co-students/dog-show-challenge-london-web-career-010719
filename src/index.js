@@ -23,6 +23,7 @@ function writeDog(dog) {
     const btnEl = dogEl.querySelector('button')
     btnEl.addEventListener('click', () => {
         fillForm(dog)
+        addFormEvent(dog) 
     })
     tableEl.append(dogEl)
 }
@@ -41,6 +42,9 @@ function fillForm(dog) {
     formEl.name.value = dog.name
     formEl.breed.value = dog.breed
     formEl.sex.value = dog.sex
+}
+
+function addFormEvent(dog) {
     formEl.addEventListener('submit', event => {
         event.preventDefault()
         updateDogLocal(dog)
@@ -65,7 +69,6 @@ function updateDogServer(dog) {
     return fetch(url, options)
         .then(res => res.json())
 }
-
 
 
 
