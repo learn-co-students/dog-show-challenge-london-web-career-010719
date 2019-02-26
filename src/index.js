@@ -31,7 +31,7 @@ function writeDog(dog) {
 }
 
 function writeDogs(dogs) {
-    for (const dog of dogs) { writeDog(dog)}
+    for (const dog of dogs) { writeDog(dog) }
 }
 
 function displayDogs() {
@@ -59,8 +59,8 @@ function addFormEvent() {
 
 function updateDogLocal(dog) {
     dog.name = formEl.name.value
-    dog.breed = formEl.breed.value 
-    dog.sex = formEl.sex.value 
+    dog.breed = formEl.breed.value
+    dog.sex = formEl.sex.value
 }
 
 function updateDogServer(dog) {
@@ -68,10 +68,8 @@ function updateDogServer(dog) {
     const options = {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dog)}
+        body: JSON.stringify(dog)
+    }
     return fetch(url, options)
         .then(res => res.json())
 }
-
-
-

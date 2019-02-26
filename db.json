@@ -2,55 +2,55 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Joey",
-      "breed": "Irish Spaniel",
-      "sex": "female"
+      "name": "Baby",
+      "breed": "Scottish Deerhound",
+      "sex": "male"
     },
     {
       "id": 2,
       "name": "Joey",
-      "breed": "Irish Spaniel",
+      "breed": "Rhodesian Ridgeback",
       "sex": "male"
     },
     {
       "id": 3,
-      "name": "Teddy Bear",
-      "breed": "Irish Spaniel",
+      "name": "Snickers",
+      "breed": "Dachshund",
       "sex": "female"
     },
     {
       "id": 4,
-      "name": "Joey4",
+      "name": "Harvey",
       "breed": "Irish Spaniel",
       "sex": "male"
     },
     {
       "id": 5,
-      "name": "Gracie2",
+      "name": "Gracie",
       "breed": "Miniature Pinscher",
       "sex": "female"
     },
     {
       "id": 6,
-      "name": "Jay",
-      "breed": "Irish Spaniel",
+      "name": "Oreo",
+      "breed": "English Springer",
       "sex": "male"
     },
     {
       "id": 7,
-      "name": "Jay",
-      "breed": "Irish Spaniel",
-      "sex": "male"
+      "name": "Diamond",
+      "breed": "Labrador",
+      "sex": "female"
     },
     {
       "id": 8,
-      "name": "Joey123",
-      "breed": "Irish Spaniel",
+      "name": "Chloe",
+      "breed": "Dandie Terrier",
       "sex": "male"
     },
     {
       "id": 9,
-      "name": "Shelby2",
+      "name": "Shelby",
       "breed": "Kuvasz",
       "sex": "male"
     },
@@ -62,7 +62,7 @@
     },
     {
       "id": 11,
-      "name": "Bob",
+      "name": "Jasper",
       "breed": "Redbone",
       "sex": "female"
     },
@@ -74,9 +74,9 @@
     },
     {
       "id": 13,
-      "name": "Joey",
-      "breed": "Irish Spaniel",
-      "sex": "male"
+      "name": "Lady",
+      "breed": "Mexicanhairless",
+      "sex": "female"
     },
     {
       "id": 14,
