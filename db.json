@@ -2,20 +2,20 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Baby",
-      "breed": "Scottish Deerhound",
-      "sex": "male"
-    },
-    {
-      "id": 2,
-      "name": "Teddy Bear",
-      "breed": "Rhodesian Ridgeback",
+      "name": "Joey",
+      "breed": "Irish Spaniel",
       "sex": "female"
     },
     {
+      "id": 2,
+      "name": "Joey",
+      "breed": "Irish Spaniel",
+      "sex": "male"
+    },
+    {
       "id": 3,
-      "name": "Snickers",
-      "breed": "Dachshund",
+      "name": "Teddy Bear",
+      "breed": "Irish Spaniel",
       "sex": "female"
     },
     {

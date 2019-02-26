@@ -1,9 +1,11 @@
 const DOGS_URL = "http://localhost:3000/dogs"
 const tableEl = document.querySelector('table')
 const formEl = document.querySelector('#dog-form')
+let currentDog
 
 document.addEventListener('DOMContentLoaded', () => {
     displayDogs()
+    addFormEvent()
 })
 
 function fetchDogs() {
@@ -23,7 +25,7 @@ function writeDog(dog) {
     const btnEl = dogEl.querySelector('button')
     btnEl.addEventListener('click', () => {
         fillForm(dog)
-        addFormEvent(dog) 
+        currentDog = dog
     })
     tableEl.append(dogEl)
 }
@@ -44,13 +46,14 @@ function fillForm(dog) {
     formEl.sex.value = dog.sex
 }
 
-function addFormEvent(dog) {
+function addFormEvent() {
     formEl.addEventListener('submit', event => {
         event.preventDefault()
-        updateDogLocal(dog)
+        updateDogLocal(currentDog)
         formEl.reset()
-        updateDogServer(dog)
+        updateDogServer(currentDog)
             .then(displayDogs)
+            .then(currentDog = null)
     })
 }
 
