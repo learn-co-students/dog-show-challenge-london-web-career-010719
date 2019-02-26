@@ -3,11 +3,11 @@ function getDogs() {
     .then(res => res.json())
 }
 
-function createDog(dog) {
+function createDog(dogData) {
     const options = {
         method: "POST",
         headers: { "Content-Type": "application/json"},
-        body: JSON.stringify(dog)
+        body: JSON.stringify(dogData)
     }
     return fetch("http://localhost:3000/dogs", options)
     .then(res => res.json())
@@ -21,4 +21,8 @@ function updateDogs(dog) {
     }
     return fetch(`http://localhost:3000/dogs/${dog.id}`, options)
     .then(res => res.json())
+}
+
+function deleteDog(dog) {
+    return fetch(`http://localhost:3000/dogs/${dog.id}`, {method: "DELETE"})
 }

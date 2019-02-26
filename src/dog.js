@@ -15,6 +15,7 @@ class Dog {
         <td>${this.breed}</td> 
         <td>${this.sex}</td> 
         <td><button class="edit-dog">Edit Dog</button></td>
+        <td><button class="delete-dog">Delete Dog</button></td>
         `
         return this.tableRow
     }
@@ -31,7 +32,7 @@ class Dog {
     }
 
     update(event) {
-        console.log(event)
+        // console.log(event)
         event.preventDefault()
         const dogName = event.target.name.value
         const dogBreed = event.target.breed.value
@@ -44,5 +45,11 @@ class Dog {
         .then(dog => dogList.updateDogList(dog))
         .then(() => dogList.renderDogList(dogList.dogs))
         
+    }
+
+    deleteDogData(dog) {
+        const dogsWithoutDeletedDog = dogList.deleteDogInstance(dog)
+        dogList.renderDogList(dogsWithoutDeletedDog)
+        return deleteDog(dog)
     }
 }
