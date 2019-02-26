@@ -1,5 +1,4 @@
-const DOGS_URL = "http://localhost:3000/dogs"
-const tableEl = document.querySelector('table')
+const tableBodyEl = document.querySelector('#table-body')
 const formEl = document.querySelector('#dog-form')
 let currentDog
 
@@ -7,11 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     displayDogs()
     addFormEvent()
 })
-
-function fetchDogs() {
-    return fetch(DOGS_URL)
-        .then(res => res.json())
-}
 
 function writeDog(dog) {
     const dogEl = document.createElement('tr')
@@ -27,7 +21,7 @@ function writeDog(dog) {
         fillForm(dog)
         currentDog = dog
     })
-    tableEl.append(dogEl)
+    tableBodyEl.append(dogEl)
 }
 
 function writeDogs(dogs) {
@@ -35,7 +29,7 @@ function writeDogs(dogs) {
 }
 
 function displayDogs() {
-    tableEl.innerHTML = ''
+    tableBodyEl.innerHTML = ''
     fetchDogs()
         .then(writeDogs)
 }
@@ -61,15 +55,4 @@ function updateDogLocal(dog) {
     dog.name = formEl.name.value
     dog.breed = formEl.breed.value
     dog.sex = formEl.sex.value
-}
-
-function updateDogServer(dog) {
-    const url = (DOGS_URL + `/${dog.id}`)
-    const options = {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dog)
-    }
-    return fetch(url, options)
-        .then(res => res.json())
 }
